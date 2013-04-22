@@ -39,9 +39,9 @@ function data = init(Xi, S, arch)
 
             oldDim = data.in.arch(m - 1);
 
-            data.alg.W{m} = 0.1 / sqrt(oldDim) .* ones(curDim, oldDim + 1);
-            % data.alg.W{m}(:, 1) = data.const.bias;
-            % TODO: add random noise
+            data.alg.W{m} = 2 / sqrt(oldDim) .* (rand(curDim, oldDim + 1) - 0.5);
+
+            data.alg.W{m}(:, 1) = data.const.bias;
 
             data.alg.dW{m} = zeros(curDim, oldDim + 1);
         end
