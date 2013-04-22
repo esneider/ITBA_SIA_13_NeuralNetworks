@@ -1,5 +1,21 @@
 function debugData(data)
 
+    disp('Constants');
+    disp('  bias:');
+    disp(data.const.bias);
+    disp('  runs:');
+    disp(data.const.runs);
+    disp('  eta:');
+    disp(data.const.eta);
+    disp('  momentum:');
+    disp(data.const.momentum);
+    disp('  beta:');
+    disp(data.const.beta);
+    disp('  g:');
+    disp(data.fun.g);
+    disp('  dg:');
+    disp(data.fun.dg);
+
     disp('Input');
     disp('  S:');
     disp(data.in.S);
@@ -8,31 +24,17 @@ function debugData(data)
     disp('  arch:');
     disp(data.in.arch);
 
-    disp('Constants');
-    disp('  bias:');
-    disp(data.const.bias);
-    disp('  runs:');
-    disp(data.const.runs);
-    disp('  g:');
-    disp(data.fun.g);
-    disp('  dg:');
-    disp(data.fun.dg);
-
-    disp('Problem constants');
-    disp('  M:');
-    disp(data.max.M);
-    disp('  I:');
-    disp(data.max.I);
-
     disp('Algorithm variables');
+    disp('  M:');
+    disp(data.alg.M);
     disp('  W:');
     celldisp(data.alg.W);
     disp('  V:');
     celldisp(data.alg.V);
     disp('  h:');
     celldisp(data.alg.h);
-    disp('  delta:');
-    celldisp(data.alg.delta);
+    disp('  dW:');
+    celldisp(data.alg.dW);
 
 end
 

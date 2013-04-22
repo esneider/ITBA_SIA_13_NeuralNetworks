@@ -11,21 +11,29 @@ function main(Xi, S, arch)
             data = algorithm.evalNetwork(input, data);
             data = algorithm.backPropagate(input, data);
         end
-        % disp('---');
-        % for input = 1 : size(data.in.Xi, 1)
-        %     % disp(data.in.Xi(input,:));
-        %     disp(algorithm.evalNetwork(input, data).alg.V{data.max.M}(2));
-        % end
+
+        disp('---');
+
+        for input = 1 : size(data.in.Xi, 1)
+
+            data = algorithm.evalNetwork(input, data);
+
+            disp(data.in.Xi(input,:));
+            disp(data.alg.V{data.alg.M}(2 : end));
+        end
+
+        input('');
     end
 
     % algorithm.debugData(data);
 
-    % data.alg.W{2} = [-2 -2 4.3; .1 9.2 8.8];
-    % data.alg.W{3} = [.8 -4.5 5.3];
-
     for input = 1 : size(data.in.Xi, 1)
+
+        data = algorithm.evalNetwork(input, data);
+
         disp(data.in.Xi(input,:));
-        disp(algorithm.evalNetwork(input, data).alg.V{data.max.M}(2));
+        disp(data.alg.V{data.alg.M}(2 : end));
     end
+
 end
 

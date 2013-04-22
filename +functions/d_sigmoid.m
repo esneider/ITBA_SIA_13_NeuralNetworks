@@ -1,5 +1,5 @@
-function y = d_sigmoid(x)
+function y = d_sigmoid(beta, x)
 
-        y = 2 * exp(2*x) ./ (1 + exp(2*x)).^2;
+    y = 2 * exp(2 * beta * x) ./ (1 + exp(2 * beta * x)) .^ 2;
 end
 
