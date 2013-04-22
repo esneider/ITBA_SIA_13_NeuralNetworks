@@ -12,17 +12,6 @@ function main(Xi, S, arch)
             data = algorithm.backPropagate(input, data);
         end
 
-        disp('---');
-
-        for input = 1 : size(data.in.Xi, 1)
-
-            data = algorithm.evalNetwork(input, data);
-
-            disp(data.in.Xi(input,:));
-            disp(data.alg.V{data.alg.M}(2 : end));
-        end
-
-        input('');
     end
 
     % algorithm.debugData(data);
