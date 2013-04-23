@@ -2,11 +2,9 @@ function data = backPropagate(input, data)
 
     % TODO: adaptative eta
 
-    M = data.alg.M;
+    delta = data.fun.dg(data.alg.h{end}) .* (data.in.S(input, :)' - data.alg.V{end}(2 : end));
 
-    delta = data.fun.dg(data.alg.h{M}) .* (data.in.S(input, :)' - data.alg.V{M}(2 : end));
-
-    for m = M : -1 : 2
+    for m = data.alg.M : -1 : 2
 
         momentum = data.const.momentum * data.alg.dW{m};
 
