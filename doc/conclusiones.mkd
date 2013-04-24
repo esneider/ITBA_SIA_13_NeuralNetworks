@@ -33,4 +33,5 @@ más compleja que deja los unos en forma de cruz, y los ceros en las esquinas, d
 
 ![](img/grafico1.png)
 
-Para ver cómo converge la red a la solución rápidamente, ver [](http://youtu.be/0LSXqYxPMjw).
+Para ver cómo converge la red a la solución rápidamente, ver el video en **youtu.be/0LSXqYxPMjw**.
+
