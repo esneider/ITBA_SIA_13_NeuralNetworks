@@ -1,4 +1,9 @@
-function main(Xi, S, arch, params)
+function main(arch, params, Xi, S)
+
+    if (nargin == 2)
+
+        [Xi, S] = algorithm.input.getInputs(params);
+    end
 
     data = algorithm.initialize(Xi, S, arch, params);
 
@@ -36,5 +41,9 @@ function main(Xi, S, arch, params)
     end
 
     algorithm.finalize(data);
+
+    if (nargin == 2)
+        % TODO
+    end
 end
 
