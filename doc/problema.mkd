@@ -9,6 +9,11 @@ ver los hiperplanos encontrados rápidamente por la RNA que trata de resolver el
 Para determinar los diferentes parámetros de nuestra RNA inicialmente corrimos el problema
 con sólo cien patrones de entrada que fueron tomados al azar.
 
+Una observación interesante es que dadas las ejecuciones nunca se pudo obtener un hiperplano
+que separe a los puntos del borde inferior derecho del gráfico, dado la poco frecuencia
+allí presente. En un futuro se podría agregar un castigo a la función de error por
+entradas valuadas muy distinto a su valor real.
+
 Al ejecutar la red con distintos parametros pudimos obtener conclusiones sobre la
 configuración óptima de cada parámetro.
 
@@ -34,11 +39,11 @@ Estos parámetros son:
 
 Los siguientes valores probaron ser útiles al entrenar la red:
 
-* *Learning rate* inicial = 0.25
-* Epsilon = 0.005
-* Incremento = 0.1
-* Decremento = 0.1
-* Cantidad de pasos buenos = 3
+* *Learning rate* inicial = 0.7
+* Epsilon = 0.001
+* Incremento = 0.01
+* Decremento = 0.001
+* Cantidad de pasos buenos = 4
 
 En el siguiente gráfico se pueden ver los errores cuadráticos medios para esta configuración.
 
@@ -114,3 +119,15 @@ segunda capa era redundante.
 
 
 @@ Ejecución óptima @@
+
+Con los parametros óptimos definidos en la sección previa y con la arquitectura [2 7 1] se
+obtuvieron los siguientes errores:
+
+*Mean Square Error*: 307.07
+Media entre las normas de las diferencias entre las salidas esperadas y las obtenidas: 0.54
+
+Por último se presentan en el gráfico los pesos finales de las conexiones.
+
+![](img/grafico9.png)
+
+
