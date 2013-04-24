@@ -14,13 +14,15 @@ function data = initialize(Xi, S, arch, params)
     data.const.finish = 0.02;
     data.const.bias = 0.5;
     data.const.runs = 1000;
-    data.const.momentum = 0.9;
-    data.const.beta = 0.5;
-    data.const.eta = 0.25;
-    data.const.etaEps = 0.01;
-    data.const.etaInc = 0.1;
+    data.const.momentum = 0.5;
+    data.const.beta = 0.005;
+    data.const.eta = 0.9;
+    data.const.etaEps = 0.001;
+    data.const.etaInc = 0.01;
     data.const.etaDec = 0.001;
-    data.const.etaSteps = 3;
+    data.const.etaSteps = 30;
+    data.const.pps = 300;
+    data.const.rollback = true;
     data.const.debug = '';
     data.const.path = '';
     data.const.g = @functions.sigmoidLog;
@@ -73,10 +75,12 @@ function data = initialize(Xi, S, arch, params)
     data.alg.errorForInputs = zeros(size(data.in.Xi, 1), 1);
     data.alg.errors = [];
     data.alg.etas = [];
+    data.alg.rollbacks = [];
     data.alg.goodSteps = 0;
     data.alg.eta = data.const.eta;
     data.alg.momentum = data.const.momentum;
     data.alg.runs = 0;
+    data.alg.rollback = 0;
 
     % Debug variables
 

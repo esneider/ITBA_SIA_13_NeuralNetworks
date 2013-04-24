@@ -4,9 +4,9 @@ function plotError(data)
 
     hold on;
 
-    eta = plot(data.alg.etas(10 : end));
+    rb = plot(data.alg.rollbacks(10 : end));
 
-    legend(eta, {'eta value per epoch'});
+    legend(rb, {'accumulated rollbacks / 1000'});
 
     hold off;
 

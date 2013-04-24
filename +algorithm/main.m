@@ -27,7 +27,8 @@ function main(Xi, S, arch, params)
             data = algorithm.debug.debugRegion(data);
         end
 
-        if (mod(data.alg.runs, 100) == 0)
+        if (mod(data.alg.runs, data.const.pps) == 0)
+
             algorithm.debug.dump2file(data, false);
         end
 
