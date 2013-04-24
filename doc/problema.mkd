@@ -1,0 +1,8 @@
+@@ Conclusiones relacionadas al problema @@
+
+A diferencia de los problemas analizados hasta el momento, la serie en el tiempo a
+analizar no dependía únicamente de su entrada, sino que el valor de salida dependía de
+las salidas previas. Una vez adaptadas y normalizadas estas entradas se pudo poner
+a prueba la RNA.
+
+Dados los parametros de *debug*
