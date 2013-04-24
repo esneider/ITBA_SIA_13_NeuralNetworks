@@ -41,9 +41,5 @@ function main(arch, params, Xi, S)
     end
 
     algorithm.finalize(data);
-
-    if (nargin == 2)
-        % TODO
-    end
 end
 
