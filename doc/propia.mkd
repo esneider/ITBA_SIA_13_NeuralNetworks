@@ -16,10 +16,10 @@ las constantes.
 @@@ Explotación de matrices y vectores @@@
 
 Dada la naturaleza de *Matlab*, se priorizó el uso operaciones de matrices, frente a
-sus análogos con loops, en pos de las performance. Por lo tanto, se modeló todo el
+sus análogos con loops, en pos de la performance. Por lo tanto, se modeló todo el
 problema de forma matricial y vectorial. Así, valores como los pesos, valores de salida
-y otros, son siempre matrices o vectores. Como resultado se cuenta con un código más
-compacto y sencillo. Adicionalmente, los valores de los umbrales fueron incluidos
+y otros, se modelan como matrices o vectores. Como resultado se cuenta con un código más
+compacto y sencillo. Adicionalmente, los valores de los umbrales fueron incluídos
 en estas matrices simplificando aún más las operaciones.
 
 @@@ Uso de *cells* @@@
@@ -36,7 +36,7 @@ Si bien se contaba con una RNA multicapa funcional, se añadieron varias optimiz
 
 El *momentum* simpelmente añade una fracción de la corrección previa de los pesos a la
 corrección actual. Este *momentum* ayuda a prevenir que la RNA se estanque en un mínimo
-local. Como todo parametro de una RNA, modificaciones en el *momentum* modifican el
+local. Como todo parametro de una RNA, las modificaciones en el *momentum* modifican el
 comportamiento de la red (velocidad de convergencia, inestabilidad del sistema).
 
 @@@ Parametros adaptativos @@@
@@ -45,14 +45,14 @@ Se realizó una implementación que adapta los parametros usados al estado del p
 Se define un criterio basado en los errores medios para decidir si un *epoch* es
 considerado bueno, malo o neutral. En el caso en los que haya habido una serie de *epochs*
 buenos, se modifica el *learning rate* para incentivar el aprendizaje. En el caso de un
-*epoch* malo se modificara en el sentido contrario. Además, el valor del
-*momentum* solo es utilizado en los pasos que son considerados como buenos fomentando
+*epoch* malo se modificará en el sentido contrario. Además, el valor del
+*momentum* sólo es utilizado en los pasos que son considerados como buenos fomentando
 así una convergencia con mayor velocidad solamente cuando el problema se dirige a una
 solución que parece ser la correcta.
 
 Una última optimización es la de realizar un *rollback* en los pasos que son considerados
 malos. Esto implica revertir la actualización de los pesos en este paso, ya que se considera
-que nos aleja de la solución.
+que nos alejan de la solución.
 
 @@@ Mezcla aleatoria de las entradas @@@
 
@@ -62,8 +62,7 @@ lógica a modo de optimización.
 
 @@@ Finalización del aprendizaje @@@
 
-El momento en que se decide cortar el aprendizaje es un factor clave para definir con que
+El momento en que se decide cortar el aprendizaje es un factor clave para definir con qué
 efectividad puede la red generalizar el problema. Por esto, se incluyó un error que
 representa una cota entre las salidas esperadas y las salidas obtenidas permitiendo
-detener el aprendizaje una vez que se obtiene un error lo suficientemente chico.
-
+detener el aprendizaje una vez que se obtiene un error lo suficientemente pequeño.
