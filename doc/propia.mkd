@@ -1,0 +1,90 @@
+ @ Implementación @
+
+ @@ Primera versión @@
+
+ En una primera instancia se buscó implementar una RNA multicapa básica, sin agregados
+ ni optimizaciones. Para esto, se siguió el el algoritmo habitual para una RNA en
+ *Matlab*. Dado el lenguaje de programación y su versatilidad esta impelmentación puede
+ ser hecha de distintas maneras. El objetivo de esta sección es el de mostrar aspectos
+ interesantes de esta implementación.
+
+ @@@ Utilización de *Structs* @@@
+
+ El lenguaje de *Matlab* provee el manejo de variables de tipo *Struct* permitiendo el
+ armado de estructuras arbitrarias definidas por el usuario, agregando cierta potencia
+ de los lenguajes orientados a objetos.
+
+ Nuestra implementación de la RNA se basa en un *Struct* que hemos definido como *data*
+ que cuenta con el estado actual de la RNA, incluyendo, las entradas, las salidas, los
+ pesos, las variaciones en los pesos, los errores, los parametros y las constantes.
+ Los modulos de la aplicación tienen acceso a este *Struct* y así a todos sus datos.
+ Un dato extra es que *Matlab* permite operar con punteros a función, haciendo así posible
+ que *data* cuente con la función de transición elegida simplificando así su uso.
+
+ @@@ Explotación de matrices y vectores @@@
+
+ Dada la naturaleza de *Matlab*, su funcionamiento provee una *performance* superior
+ priorizando las operaciones matemáticas a estructuras de flujo (del estilo de *for*s).
+ Combinando este conocimiento y las caracteristicas propias del problema, se decidió
+ modelar los datos del problema matricial y vectorialmente. Así, valores como los pesos,
+ los valores de salida y otros son utilizados como matrices y vectores, explotando la
+ potencia de *Matlab* al operar con ellos. Como resultado se cuenta con un código
+ resumido y más entendible. Adicionalmente, los valores de los umbrales fueron incluidos
+ en estas matrices simplificando aún más las operaciones.
+
+ @@@ Uso de la función *Cell* @@@
+
+ La función *Cell* de *Matlab* crea una matriz de celdas cuyo contenido puede ser
+ definido por el usuario. Si bien su uso parece trivial y es modelable de otras maneras,
+ la función *Cell* provee una codificación clara y sencilla para modelar problemas que
+ originalmente no lo eran. Particularmente en nuestro problema se cuentan con estructuras
+ que deben ser modeladas como una matriz de tres dimensiones (se cuenta con una matriz de
+ pesos por cada nivel de la RNA) y su codificación no es trivial ni clara. Por eso, se
+ utilizó la función *Cell* para resolver estos problemas (en el caso de los pesos se
+ cuenta con un vector de celdas que tiene una matriz de pesos en cada espacio).
+
+ @@ Segunda versión @@
+
+Si bien se contaba con una RNA multicapa funcional, este tipo de sistemas pueden ser
+optimizados mediante ciertas variantes. En una segunda versión de la implementación se
+introdujeron optimizaciones a la RNA basadas en las recomendaciones de la cátedra y otras
+basadas en "prueba y error".
+
+@@@ *Momentum* @@@
+
+El *Momentum* simpelmente añade una fracción de la corrección previa de los pesos a la
+corrección actual. Este *Momentum* ayuda a prevenir que la RNA se estanque en un mínimo
+local. Como todo parametro de una RNA, modificaciones en el *Momentum* modifican el
+comportamiento de la red (velocidad de convergencia, inestabilidad del sistema).
+
+@@@ Parametros adaptativos @@@
+
+Se realizó una implementación que adapta los parametros usados al estado del problema.
+Se define un criterio basado en los errores medios para decidir si un *epoch* es
+considerado bueno, malo o neutral. En el caso en los que haya habido una serie *epoch*s
+buenos se modifica el *learning rate* para incentivar el aprendizaje. En el caso de un
+*epoch* malo se modificara en el sentido contrario este valor. En el caso de un *epoch*
+neutral este valor no se modifica. Adicionalmente se puede definir que el valor del
+*Momentum* solo sea utilizado en los pasos que son considerados como buenos fomentando
+así una convergencia con mayor velocidad solamente cuando el problema se dirige a una
+solución que parece ser la correcta. Una última optimización relacionada a esto, es la de
+realizar un *Rollback* en los pasos que son considerados malos. Esto implica revertir
+la actualización de los pesos en este paso ya que se considera que nos aleja
+considerablemente de la solución.
+
+Una vez más, los parametros bajo los cuales se modifica el *learning rate* y la cota que
+se usa para definir pasos buenos o malos son críticos para el comportamiento de la red.
+Su ajuste es esencial para el buen aprendizaje de un problema.
+
+@@@ Mezcla aleatoria de las entradas @@@
+
+De forma empírica hemos notado que se obtienen mejores resultados si al comienzo de
+cada ronda se mezcla el orden en el que son evaluados los patrones de entrada. De esta
+manera se ha añadido esta lógica a modo de optimización.
+
+@@@ Finalización del aprendizaje @@@
+
+El momento en que se decide cortar el aprendizaje es un factor clave para definir con que
+efectividad puede la red generalizar el problema. Por esto, se incluyó un error que
+representa una cota entre las salidas esperadas y las salidas obtenidas permitiendo
+detener el aprendizaje una vez que se obtiene un error menor al definido.

@@ -1,0 +1,30 @@
+@ Conclusiones @
+
+@@ Pruebas previas y formas de evaluación @@
+
+Uno de los problemas más famosos que son posibles de resolver con una RNA multicapa pero
+que no es posible de resolver con un perceptrón simple es el problema del *Xor*. Este
+problema y otro de complejidades similares fueron utilizados a modo de prueba de la RNA
+tanto en su primer versión como en la versión final.
+
+Si bien la versión inicial de nuestra red era capaz de aprender el problema, tendía a
+estancarse en mínimos locales. Una vez añadidos el momentum y la mezcla aleatoria de las
+entradas el porcentaje de veces en que el problema era aprendido aumento considerablemente.
+Para este punto de pruebas pudimos comprender que la red es muy sensible a los parametros
+establecidos (*Momentum*, *Learning rate*, pesos iniciales, etc) que necesariamente
+sería tomado en cuenta una vez presentado el problema real.
+
+La implementación de parametros adaptativos nos trajo respuestas mixtas. No solo era
+extremadamente sensible a la definición de pasos buenos y malos (a través de un *epsilon*)
+sino que en la mayoría de los casos, la implementación de *Rollbacks* era propensa a
+estancarse en mínimos locales. Esto se debe a que los *Rollbacks* tienden a priorizar el
+camino a la solución que se esta tomando, descartando caminos que la alejen.
+
+Para comprobar el funcionamiento de nuestra red se añadieron parametros de prueba que
+permiten visualizar los datos de forma completa en la salida y la generación de gráficos
+de los pesos, el *Learning rate* y los errores. A su vez, el progreso de los pesos puede
+ser visto gráficamente en tiempo real. Para realizar pruebas más exhaustivas de añadió
+la posibilidad de poder detener el aprendizaje en cualquier punto de la ejecución, evaluar
+su estado y luego retomar desde ese mismo punto.
+
+@@ Conclusiones relacionadas al problema @@
