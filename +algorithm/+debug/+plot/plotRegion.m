@@ -33,6 +33,8 @@ function plotRegion(data)
 
     eqn = strcat(old_eqn{2}, '=0.5');
 
+    % Plot
+
     clf();
 
     hold on;
@@ -40,7 +42,9 @@ function plotRegion(data)
     border = ezplot(eqn, [-2 2 -2 2]);
 
     for input = 1 : size(data.in.Xi, 1)
+
         if (data.in.S(input) > 0.5)
+
             one = plot(data.in.Xi(input, 1), data.in.Xi(input, 2), 'r.', 'MarkerSize', 20);
         else
             zero = plot(data.in.Xi(input, 1), data.in.Xi(input, 2), 'b.', 'MarkerSize', 20);

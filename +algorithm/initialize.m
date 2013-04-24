@@ -1,21 +1,33 @@
 function data = initialize(Xi, S, arch, params)
 
+    if (isfield(params, 'file'))
+
+        load(params.file, '-mat', 'data');
+        return;
+    end
+
     data = struct();
 
     % Default constants
 
     data.const = struct();
+    data.const.finish = 0.02;
     data.const.bias = 0.5;
     data.const.runs = 1000;
-    data.const.eta = 0.25;
     data.const.momentum = 0.9;
     data.const.beta = 0.5;
+    data.const.eta = 0.25;
+    data.const.etaEps = 0.01;
+    data.const.etaInc = 0.1;
+    data.const.etaDec = 0.001;
+    data.const.etaSteps = 3;
     data.const.debug = '';
+    data.const.path = '';
     data.const.g = @functions.sigmoidLog;
     data.const.dg = @functions.DsigmoidLog;
 
     names = fieldnames(params);
-    for i = [1 : length(names)]
+    for i = 1 : length(names)
         data.const.(names{i}) = params.(names{i});
     end
 
@@ -57,6 +69,14 @@ function data = initialize(Xi, S, arch, params)
         data.alg.V{m} = [-1; zeros(curDim, 1)];
         data.alg.h{m} = zeros(curDim, 1);
     end
+
+    data.alg.errorForInputs = zeros(size(data.in.Xi, 1), 1);
+    data.alg.errors = [];
+    data.alg.etas = [];
+    data.alg.goodSteps = 0;
+    data.alg.eta = data.const.eta;
+    data.alg.momentum = data.const.momentum;
+    data.alg.runs = 0;
 
     % Debug variables
 

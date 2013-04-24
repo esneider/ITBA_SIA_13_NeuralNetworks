@@ -1,12 +1,12 @@
 function data = debugRegion(data)
 
-    algorithm.debug.plotRegion(data);
+    algorithm.debug.plot.plotRegion(data);
 
     if (strcmp(data.const.debug, 'video'))
 
-        if (~strcmp(class(data.debug.video), 'VideoWriter'))
+        if (~isa(data.debug.video, 'VideoWriter'))
 
-            data.debug.video = VideoWriter('video.avi');
+            data.debug.video = VideoWriter(strcat(data.const.path, 'video.avi'));
             data.debug.video.FrameRate = 15;
             open(data.debug.video);
         end
@@ -18,3 +18,4 @@ function data = debugRegion(data)
         waitforbuttonpress;
     end
 end
+
