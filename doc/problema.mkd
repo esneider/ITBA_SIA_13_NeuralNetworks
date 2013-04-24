@@ -52,17 +52,17 @@ El siguiente gráfico muestra la variación del *learning rate* para esta config
 
 Tras diversas pruebas empíricas hemos encontrado que los mejores resultados para la red
 en este problema se obtienen con un *momentum* de 0.5. Aquellos valores cercanos al 0 o al 1
-hacen que la red se estanque.
+producen que la red se estanque.
 
 El siguiente gráfico muestra el caso con el *momentum* definido en 0.9 y es fácil ver
-su estancamiento a lo largo de las iteraciones. También que al ser un *momentum* cercano
-a 1 hay mucho ruido.
+su estancamiento a lo largo de las iteraciones. También se puede observar que
+al ser un *momentum* cercano a 1 hay mucho ruido.
 
 ![](img/grafico6.png)
 
 @@@ Beta y funciones de transferencia @@@
 
-Dado que normalizamos la función tangente hiperbolica para que su imagen sea `(0,1)`,
+Dado que normalizamos la función tangente hiperbólica para que su imagen sea `(0,1)`,
 esta función y la función sigmoidea lógica quedan equivalentes.
 
 Así, basta con variar el parámetro *beta* para ajustar nuestra función de transferencia.
