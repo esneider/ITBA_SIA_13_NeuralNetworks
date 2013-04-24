@@ -16,9 +16,7 @@ sería tomado en cuenta una vez presentado el problema real.
 
 La implementación de parametros adaptativos nos trajo respuestas mixtas. No solo era
 extremadamente sensible a la definición de pasos buenos y malos (a través de un *epsilon*)
-sino que en la mayoría de los casos, la implementación de *Rollbacks* era propensa a
-estancarse en mínimos locales. Esto se debe a que los *Rollbacks* tienden a priorizar el
-camino a la solución que se esta tomando, descartando caminos que la alejen.
+sino que en la mayoría de los casos era propensa a estancarse en mínimos locales. Esto se debe a que los parametros adaptativos tienden a priorizar el camino a la solución que se esta tomando, descartando caminos que la alejen.
 
 Para comprobar el funcionamiento de nuestra red se añadieron parametros de prueba que
 permiten visualizar los datos de forma completa en la salida y la generación de gráficos
