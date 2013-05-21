@@ -1,0 +1,17 @@
+@ Introducción @
+
+En el área de la informática, las redes neuronales (también conocidas como redes neuronales
+artificiales, RNA) son sistemas de neuronas artificiales interconectadas que se relacionan
+entre sí para generar una salida, a partir de una entrada dada.
+
+Estos sistemas son utilizados de forma tal que hagan un aprendizaje automático. En muchos casos,
+una RNA bien implementada y con los parámetros correctos permite aprender muchos problemas en
+base a patrones de prueba, que serían muy difíciles o hasta imposibles de resolver de forma
+explícita.
+
+En este caso, la temática abordada es la predicción de series temporales.
+Para ello se toma **`x(t) = f(x(t-1), x(t-2), ...)`** como el valor de la serie en el paso
+temporal **`t`**, que depende de los pasos previos de la misma.
+
+La RNA que se busca es aquella que aproxime la función **`x(t)`**.
+

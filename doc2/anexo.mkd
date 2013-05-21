@@ -1,0 +1,3 @@
+@ Anexo @
+
+Las pruebas fueron realizadas con una MacBook Pro con un procesador 2.4Ghz Intel Core i5.

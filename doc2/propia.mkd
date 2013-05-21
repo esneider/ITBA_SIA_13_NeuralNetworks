@@ -1,0 +1,65 @@
+@ Implementación @
+
+@@ Especificaciones generales @@
+
+Se implementó una RNA multicapa en *Matlab*, explotando el potencial de aquellas
+estructuras, funciones y prestaciones de este lenguaje.
+
+@@@ Uso de *structs* @@@
+
+Prácticamente todas las funciones tienen acceso a un *struct*, llamado `data` que
+cuenta con el estado actual de la RNA, incluyendo, las entradas, las salidas, los
+pesos, las variaciones en los pesos, los errores, los parametros, las funciones y
+las constantes.
+
+@@@ Explotación de matrices y vectores @@@
+
+Dada la naturaleza de *Matlab*, se priorizó el uso operaciones de matrices, frente a
+sus análogos con loops, en pos de la performance. Por lo tanto, se modeló todo el
+problema de forma matricial y vectorial. Así, valores como los pesos, valores de salida
+y otros, se modelan como matrices o vectores. Como resultado se cuenta con un código más
+compacto y sencillo. Adicionalmente, los valores de los umbrales fueron incluídos
+en estas matrices simplificando aún más las operaciones.
+
+@@@ Uso de *cells* @@@
+
+Los *cells* de *Matlab* provee una estructura de datos clara y sencilla para modelar
+los problemas en cuestión (varias capas con un número variable de neuronas). Por lo
+tanto gran parte de nuestras estructuras son *cells*.
+
+@@ Optimizaciones a la RNA @@
+
+@@@ *Momentum* @@@
+
+El *momentum* simpelmente añade una fracción de la corrección previa de los pesos a la
+corrección actual. Este *momentum* ayuda a prevenir que la RNA se estanque en un mínimo
+local. Como todo parametro de una RNA, las modificaciones en el *momentum* modifican el
+comportamiento de la red (velocidad de convergencia, inestabilidad del sistema).
+
+@@@ Parametros adaptativos @@@
+
+Se realizó una implementación que adapta los parametros usados al estado del problema.
+Se define un criterio basado en parámetros de la RNA y en el error cuadrático medio de
+cada patrón para decidir si un *epoch* es considerado bueno, malo o neutral. En el
+caso en los que haya habido una serie de *epochs* buenos, se modifica el
+*learning rate* para incentivar el aprendizaje. En el caso de un *epoch* malo se
+modificará en el sentido contrario. Además, el valor del *momentum* sólo es utilizado
+en los pasos que son considerados como buenos fomentando así una convergencia con mayor
+velocidad solamente cuando el problema se dirige a una solución que parece ser la
+correcta.
+
+Una última optimización es la de realizar un *rollback* en los pasos que son considerados
+malos. Esto implica revertir la actualización de los pesos en este paso, ya que se considera
+que nos alejan de la solución.
+
+@@@ Mezcla aleatoria de las entradas @@@
+
+Si bien no es considerada una optimización per sé, es importante mencionar el hecho de que
+el conjunto de patrones se mezcla de forma aleatoria en cada iteración para poder obtener
+buenos resultados.
+
+@@@ Finalización del aprendizaje @@@
+
+El momento en que se decide cortar el aprendizaje es un factor clave para definir con qué
+efectividad puede la red generalizar el problema.
+//TODO...Explicar nuestro NUEVO "criterio de corte".

@@ -1,0 +1,12 @@
+@ITBA SIA 2013
+@@TP Nº2: Redes Neuronales
+
+@@@Grupo 3
+
+**Integrantes:**
+
+* Betina Cynthia Mamani, legajo 52310
+* Darío Sneidermanis, legajo 50395
+* Darío Susnisky, legajo 50592
+
+@@@Problema: Predicción de series temporales

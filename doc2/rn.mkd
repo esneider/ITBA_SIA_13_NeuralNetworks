@@ -1,0 +1,36 @@
+@ Redes Neuronales Artificiales @
+
+La idea principal de una RNA es que se cuenta con neuronas distribuidas por niveles.
+Cada neurona recibe estimulos de entrada y devuelve un estimulo de salida  que se
+calcula aplicando una función de transferencia a la suma ponderada de sus entradas.
+El objetivo, es que al finalizar la etapa de entrenamiento, la red haya obtenido
+valores óptimos para los pesos de cada conexión, que satisfagan el problema.
+
+Las RNA clasificadas como perceptrones simples permiten únicamente resolver problemas
+linealmente separables. Estas RNA solo cuentan con una capa de entrada y una de
+salida. Análogamente existen perceptrones multicapa que cuentan con capas ocultas que
+permiten resolver cualquier problema dada la arquitectura y los parametros correctos.
+
+Una red neuronal obtiene una salida en base a una entrada dada, y la compara con la
+salida esperada. En base a estos datos se recalculan los pesos de las conexiones mediante
+el algoritmo de *Backpropagation Learning*. 
+Esto se realiza con patrones de entrada denominado conjunto de entrenamiento y con el
+objetivo de poder generalizar el problema para otros patrones.
+Este procedimiento se repite una cantidad de pasos (también llamados epochs) hasta que
+se cumpla cierta condición. Esta condición puede estar relacionada con el tiempo de 
+ejecución de la red, la cantidad de epochs o en relación al error que presente la red
+(con el conjunto de entrenamiento o con un conjunto más amplio).
+
+Definimos arquitectura de la red a la disposición de las neuronas, que determina tanto
+la cantidad de capas ocultas en la red, como la cantidad de neuronas por capa.
+Este parámetro es esencial ya que no todas las arquitecturas son capaces de modelar
+todos los problemas.
+
+Otro parametro importante de una red neuronal es la función de transferencia. En general
+se usa una función sigmoidea.
+
+Por último, hay que tener en cuenta los pesos (factores de ponderación de las entradas)
+inciales que se le da a cada neurona, el *learning rate* y las distintas optimizaciones
+que se le pueden hacer a una implementación (algunos ejemplos son el *momentum*, un
+*learning rate* adaptivo o la inyección de ruido).
+

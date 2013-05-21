@@ -1,0 +1,20 @@
+Ideas:
+
+- RECORDAR: Graficos con epigrafes, tablas tambien. SIEMPRE.
+- Nota: No creo que haga falta mas de dos capas ocultas pa testear....
+
+- Incluir las funciones
+- Hablar de la normalizacion de las funciones
+- Incluir formulas momentum / eta adaptativo/ whatever
+
+- DEFINIR nuestro conjunto de prueba y nuestro conjunto que n oes de prueba (proporcion)
+- DEFINIR el fucking error
+
+- Resultados: Simplemente decir cuales fueron las configuraciones y los resultados. No extenderse mucho mas.
+- Resultados: A nuestros parametros definidos (alpha, beta, etc) solo decir los mejores. A lo sumo incluir comparaciones con valores sugeridos
+- Resultados: Rollbacks...evaluar en base a resultados
+- Resultados: Comparar funciones de activacion.
+
+- Conclusiones: Incluir histograma ECM
+- Conclusiones: NO EXTENDERSE si no lo creemos necesario, no guitarrear al pedo. Incluir en lo posible comaracione error conjunto de prueba vs generalizacion.
+

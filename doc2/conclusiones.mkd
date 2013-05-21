@@ -1,0 +1,37 @@
+@ Conclusiones @
+
+@@ Pruebas previas y formas de evaluación @@
+
+Uno de los problemas más famosos que son posibles de resolver con una RNA multicapa pero
+que no es posible de resolver con un perceptrón simple es el problema del *Xor*. Este
+problema y otro de complejidades similares fueron utilizados a modo de prueba de la RNA
+tanto en su primerq versión como en la final.
+
+Si bien la primera implementación de nuestra red era capaz de aprender el problema, tendía a
+estancarse en mínimos locales. Una vez añadidos el *momentum* y la mezcla aleatoria de las
+entradas, el porcentaje de éxito aumentó considerablemente. Pudimos observar la alta
+sensibilidad de la red a los parámetros de configuración (*momentum*, *learning rate*,
+pesos iniciales, etc), que tuvimos que tener en cuenta una vez presentado el problema real.
+
+La implementación de parámetros adaptativos nos trajo respuestas mixtas. No sólo era
+extremadamente sensible a la definición de pasos buenos y malos (a través de un *epsilon*)
+sino que en la mayoría de los casos era propensa a estancarse en mínimos locales: cuando
+se llega a un mínimo local, cada vez que se intenta salir (hill climbing), se hace un rollback,
+por ser este movimiento desfavorable.
+
+Para comprobar el funcionamiento de nuestra red se añadieron parámetros de prueba que
+permiten visualizar los datos de forma completa en la salida y la generación de gráficos
+de los pesos, el *learning rate* y los errores. A su vez, el progreso de los pesos puede
+ser visto gráficamente en tiempo real. Para realizar pruebas más exhaustivas se añadió
+la posibilidad de poder detener el aprendizaje en cualquier punto de la ejecución, evaluar
+su estado y luego retomar desde ese mismo punto.
+
+@@@ Testing @@@
+
+Se testeó la red con problemas que no fuesen linealmente separables, como el *xor*, y la versión
+más compleja que deja los unos en forma de cruz, y los ceros en las esquinas, de forma exitosa:
+
+![](img/grafico1.png)
+
+Para ver cómo converge la red a la solución rápidamente, se puede ver el video en **youtu.be/0LSXqYxPMjw**.
+

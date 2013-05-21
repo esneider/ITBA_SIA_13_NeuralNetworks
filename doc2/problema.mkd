@@ -1,0 +1,133 @@
+@@ Conclusiones relacionadas al problema @@
+
+Dados los parametros de *debug* y configurando la función para ser dependiente de dos
+valores previos se pudo ver rápidamente su distribución. A su vez, se pueden
+ver los hiperplanos encontrados rápidamente por la RNA que trata de resolver el problema.
+
+![](img/grafico2.png)
+
+Para determinar los diferentes parámetros de nuestra RNA inicialmente corrimos el problema
+con sólo cien patrones de entrada que fueron tomados al azar.
+
+Una observación interesante es que dadas las ejecuciones nunca se pudo obtener un hiperplano
+que separe a los puntos del borde inferior derecho del gráfico, dado la poco frecuencia
+allí presente. En un futuro se podría agregar un castigo a la función de error por
+entradas valuadas muy distinto a su valor real.
+
+Al ejecutar la red con distintos parametros pudimos obtener conclusiones sobre la
+configuración óptima de cada parámetro.
+
+@@@ Parametros adaptativos @@@
+
+Al entrenar la RNA con el *momentum* adaptativo y *rollbacks* se llegó a la misma
+conclusión obtenida en los problemas evaluados previamente.
+Una vez que la red llega a un mínimo local, nunca sale de él y se queda haciendo *rollback*
+indefinidamente.
+
+![](img/grafico3.png)
+
+Paralelamente, definir un *learning rate* no perturba al comportamiento de l  RNA.
+Sin embargo, su uso debe ser cauteloso ya que definir sus configuraciones de manera
+azarosa hace que el *learning rate* disminuya considerablemente haciendo que la red
+se estanque.
+Estos parámetros son:
+
+* Epsilon para definir el error
+* Incremento en *learning rate*
+* Decremento en *learning rate*
+* Cantidad de buenos pasos para incrementar el *learning rate*
+
+Los siguientes valores probaron ser útiles al entrenar la red:
+
+* *Learning rate* inicial = 0.7
+* Epsilon = 0.001
+* Incremento = 0.01
+* Decremento = 0.001
+* Cantidad de pasos buenos = 4
+
+En el siguiente gráfico se pueden ver los errores cuadráticos medios para esta configuración.
+
+![](img/grafico5.png)
+
+El siguiente gráfico muestra la variación del *learning rate* para esta configuración.
+
+![](img/grafico4.png)
+
+@@@ Momentum @@@
+
+Tras diversas pruebas empíricas hemos encontrado que los mejores resultados para la red
+en este problema se obtienen con un *momentum* de 0.5. Aquellos valores cercanos al 0 o al 1
+producen que la red se estanque.
+
+El siguiente gráfico muestra el caso con el *momentum* definido en 0.9 y es fácil ver
+su estancamiento a lo largo de las iteraciones. También se puede observar que
+al ser un *momentum* cercano a 1 hay mucho ruido.
+
+![](img/grafico6.png)
+
+@@@ Beta y funciones de transferencia @@@
+
+Dado que normalizamos la función tangente hiperbólica para que su imagen sea `(0,1)`,
+esta función y la función sigmoidea lógica quedan equivalentes.
+
+Así, basta con variar el parámetro *beta* para ajustar nuestra función de transferencia.
+
+Cuando *beta* es cercano a 1 la función sigmoidea se acerca a la función escalón y por lo
+tanto su derivada diverge. Esto hace que el gradiente sea muy grande en valor absoluto y
+por lo tanto los pesos tengan mucho ruido.
+
+A continuación se presenta un gráfico del error por cuadrados mínimos con *beta* = 1
+
+![](img/grafico7.png)
+
+El valor de *beta* elegido fue de 0.5
+
+@@@ Estructuras de la RNA @@@
+
+La RNA fue probada con las siguientes arquitecturas:
+
+* [2 5 1]
+* [2 6 1]
+* [2 6 2 1]
+* [2 7 1]
+* [2 8 1]
+* [3 6 1]
+* [3 7 1]
+* [3 8 1]
+* [2 9 6 1]
+* [3 6 2 1]
+
+Al ver la distribución de los datos modelada en el plano, sugerimos a modo de apuesta la
+solución [2 5 1] ya que notamos que era posible separar las distintas regiones del problema
+con 5 rectas.
+
+Luego, dado que toda una región del plano estaba cubierta por puntos pensamos que agregar
+una entrada más (3 neuronas en la capa de entrada) resolvería mejor el problema disminuyendo
+el error.
+Sin embargo, al probarlo empíricamente encontramos que la *performance* de esta arquitectura
+era similar (o incluso peor) que a la de 2 entradas.
+
+A modo de prueba se incluyeron más neuronas en la capa oculta sin encontrar mejoras
+considerables.
+
+Una conlusión interesante se presentó al tratar de incluir una segunda capa oculta.
+Como se puede ver en la imagen a continuación, la capa de salida le asignó el mismo peso a
+ambas neuronas de la segunda capa oculta. Esto nos llevó a la hipotesis de que la
+segunda capa era redundante.
+
+![](img/grafico8.png)
+
+
+@@ Ejecución óptima @@
+
+Con los parametros óptimos definidos en la sección previa y con la arquitectura [2 7 1] se
+obtuvieron los siguientes errores:
+
+*Mean Square Error*: 307.07
+Media entre las normas de las diferencias entre las salidas esperadas y las obtenidas: 0.54
+
+Por último se presentan en el gráfico los pesos finales de las conexiones.
+
+![](img/grafico9.png)
+
+
