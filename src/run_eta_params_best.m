@@ -1,0 +1,42 @@
+params = struct('maxEpochs', 199);
+
+i = 20;
+params.etaEps=0.1;params.etaInc=0.01;params.etaDec=0.0001;params.etaSteps=3;
+i=i+1;params.path=strcat('output',int2str(i),'/');algorithm.main([4 4], params);
+params.etaEps=0.1;params.etaInc=0.1;params.etaDec=0.1;params.etaSteps=2;
+i=i+1;params.path=strcat('output',int2str(i),'/');algorithm.main([4 4], params);
+params.etaEps=0.001;params.etaInc=0.1;params.etaDec=0.1;params.etaSteps=3;
+i=i+1;params.path=strcat('output',int2str(i),'/');algorithm.main([4 4], params);
+params.etaEps=0.0001;params.etaInc=0.001;params.etaDec=0.1;params.etaSteps=2;
+i=i+1;params.path=strcat('output',int2str(i),'/');algorithm.main([4 4], params);
+params.etaEps=0.1;params.etaInc=0.001;params.etaDec=0.001;params.etaSteps=4;
+i=i+1;params.path=strcat('output',int2str(i),'/');algorithm.main([4 4], params);
+params.etaEps=0.01;params.etaInc=0.1;params.etaDec=0.01;params.etaSteps=2;
+i=i+1;params.path=strcat('output',int2str(i),'/');algorithm.main([4 4], params);
+params.etaEps=0.1;params.etaInc=0.01;params.etaDec=0.001;params.etaSteps=2;
+i=i+1;params.path=strcat('output',int2str(i),'/');algorithm.main([4 4], params);
+params.etaEps=0.1;params.etaInc=0.01;params.etaDec=0.001;params.etaSteps=4;
+i=i+1;params.path=strcat('output',int2str(i),'/');algorithm.main([4 4], params);
+params.etaEps=0.01;params.etaInc=0.001;params.etaDec=0.001;params.etaSteps=3;
+i=i+1;params.path=strcat('output',int2str(i),'/');algorithm.main([4 4], params);
+
+i = 20;
+params.etaEps=0.1;params.etaInc=0.01;params.etaDec=0.0001;params.etaSteps=3;
+i=i+1;fprintf('output %d: eps=%f inc=%f dec=%f steps=%d\n', i, params.etaEps, params.etaInc, params.etaDec, params.etaSteps);
+params.etaEps=0.1;params.etaInc=0.1;params.etaDec=0.1;params.etaSteps=2;
+i=i+1;fprintf('output %d: eps=%f inc=%f dec=%f steps=%d\n', i, params.etaEps, params.etaInc, params.etaDec, params.etaSteps);
+params.etaEps=0.001;params.etaInc=0.1;params.etaDec=0.1;params.etaSteps=3;
+i=i+1;fprintf('output %d: eps=%f inc=%f dec=%f steps=%d\n', i, params.etaEps, params.etaInc, params.etaDec, params.etaSteps);
+params.etaEps=0.0001;params.etaInc=0.001;params.etaDec=0.1;params.etaSteps=2;
+i=i+1;fprintf('output %d: eps=%f inc=%f dec=%f steps=%d\n', i, params.etaEps, params.etaInc, params.etaDec, params.etaSteps);
+params.etaEps=0.1;params.etaInc=0.001;params.etaDec=0.001;params.etaSteps=4;
+i=i+1;fprintf('output %d: eps=%f inc=%f dec=%f steps=%d\n', i, params.etaEps, params.etaInc, params.etaDec, params.etaSteps);
+params.etaEps=0.01;params.etaInc=0.1;params.etaDec=0.01;params.etaSteps=2;
+i=i+1;fprintf('output %d: eps=%f inc=%f dec=%f steps=%d\n', i, params.etaEps, params.etaInc, params.etaDec, params.etaSteps);
+params.etaEps=0.1;params.etaInc=0.01;params.etaDec=0.001;params.etaSteps=2;
+i=i+1;fprintf('output %d: eps=%f inc=%f dec=%f steps=%d\n', i, params.etaEps, params.etaInc, params.etaDec, params.etaSteps);
+params.etaEps=0.1;params.etaInc=0.01;params.etaDec=0.001;params.etaSteps=4;
+i=i+1;fprintf('output %d: eps=%f inc=%f dec=%f steps=%d\n', i, params.etaEps, params.etaInc, params.etaDec, params.etaSteps);
+params.etaEps=0.01;params.etaInc=0.001;params.etaDec=0.001;params.etaSteps=3;
+i=i+1;fprintf('output %d: eps=%f inc=%f dec=%f steps=%d\n', i, params.etaEps, params.etaInc, params.etaDec, params.etaSteps);
+

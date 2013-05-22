@@ -20,12 +20,12 @@ function data = initialize(arch, params)
 
     data.const.bias = 0.5;         % TEST: [-0.5 : 0.5 : 0.5]             3
     data.const.beta = 0.5;         % TEST: [0.5 : 0.25 : 1]               3
-    data.const.momentum = 0.5;     % TEST: [0 : 0.2 : 1]                  6
-    data.const.eta = 0.25;         % TEST: [0 : 0.2 : 1]                  6
-    data.const.etaEps = 0.001;     % TEST: [0.0001, 0.001, 0.01, 0.1]     5
-    data.const.etaInc = 0.01;      % TEST: [0.0001, 0.001, 0.01, 0.1]     5
-    data.const.etaDec = 0.01;      % TEST: [0.0001, 0.001, 0.01, 0.1]     5
-    data.const.etaSteps = 3;       % TEST: [2, 3, 4]                      4
+    data.const.momentum = 1.0;     % TEST: [0 : 0.2 : 1]                  6
+    data.const.eta = 0.4;          % TEST: [0 : 0.2 : 1]                  6
+    data.const.etaEps = 0.01;      % TEST: [0.0001, 0.001, 0.01, 0.1]     4
+    data.const.etaInc = 0.01;      % TEST: [0.0001, 0.001, 0.01, 0.1]     4
+    data.const.etaDec = 0.001;     % TEST: [0.0001, 0.001, 0.01, 0.1]     4
+    data.const.etaSteps = 3;       % TEST: [2, 3, 4]                      3
     data.const.inputSamples = 100; % TEST: [100, 200, 400]                3
     data.const.inputDim = 2;       % TEST: [2, 3]                         2
 
