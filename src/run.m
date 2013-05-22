@@ -14,7 +14,7 @@
     % 'beta', 1,...
     % 'pps', 20);
 
-params = struct('path', 'output2/', 'inputSamples', 10);
+params = struct('path', 'output3/', 'inputSamples', 10, 'rollback', false);
 
 algorithm.main([4 4], params);
 
