@@ -9,7 +9,7 @@ estructuras, funciones y prestaciones de este lenguaje.
 
 Prácticamente todas las funciones tienen acceso a un *struct*, llamado `data` que
 cuenta con el estado actual de la RNA, incluyendo, las entradas, las salidas, los
-pesos, las variaciones en los pesos, los errores, los parametros, las funciones y
+pesos, las variaciones en los pesos, los errores, los parámetros, las funciones y
 las constantes.
 
 @@@ Explotación de matrices y vectores @@@
@@ -33,10 +33,10 @@ tanto gran parte de nuestras estructuras son *cells*.
 
 El *momentum* simpelmente añade una fracción de la corrección previa de los pesos a la
 corrección actual. Este *momentum* ayuda a prevenir que la RNA se estanque en un mínimo
-local. Como todo parametro de una RNA, las modificaciones en el *momentum* modifican el
+local. Como todo parámetro de una RNA, las modificaciones en el *momentum* modifican el
 comportamiento de la red (velocidad de convergencia, inestabilidad del sistema).
 
-@@@ Parametros adaptativos @@@
+@@@ Parámetros adaptativos @@@
 
 Se realizó una implementación que adapta los parametros usados al estado del problema.
 Se define un criterio basado en parámetros de la RNA y en el error cuadrático medio (ECM)
@@ -62,4 +62,12 @@ buenos resultados.
 
 El momento en que se decide cortar el aprendizaje es un factor clave para definir con qué
 efectividad puede la red generalizar el problema.
-//TODO...Explicar nuestro NUEVO "criterio de corte".
+Hemos decidido que nuestro criterio de corte fuera el valor de 200 epochs, dado que nos
+hemos dado cuenta que era un momento apropiado para cortar el aprendizaje.
+Un buen parámetro de corte sería aquel momento en el cual si bien el error para los patrones
+del conjunto de aprendizaje sigue disminuyendo, el error general comienza a aumentar.
+En nuestro caso, no hemos implementado este modo de corte puesto que no hemos tenido el problema
+mencionado anteriormente de que si bien el error para el conjunto de aprendizaje disminuye,
+el error general aumenta.
+Se pueden apreciar los gráficos incluídos en el anexo.
+

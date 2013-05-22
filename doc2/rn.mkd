@@ -1,7 +1,7 @@
 @ Redes Neuronales Artificiales @
 
 La idea principal de una RNA es que se cuenta con neuronas distribuidas por niveles.
-Cada neurona recibe estimulos de entrada y devuelve un estimulo de salida  que se
+Cada neurona recibe estímulos de entrada y devuelve un estímulo de salida que se
 calcula aplicando una función de transferencia a la suma ponderada de sus entradas.
 El objetivo, es que al finalizar la etapa de entrenamiento, la red haya obtenido
 valores óptimos para los pesos de cada conexión, que satisfagan el problema.
@@ -13,11 +13,11 @@ permiten resolver cualquier problema dada la arquitectura y los parametros corre
 
 Una red neuronal obtiene una salida en base a una entrada dada, y la compara con la
 salida esperada. En base a estos datos se recalculan los pesos de las conexiones mediante
-el algoritmo de *Backpropagation Learning*. 
+el algoritmo de *Backpropagation Learning*.
 Esto se realiza con patrones de entrada denominado conjunto de entrenamiento y con el
 objetivo de poder generalizar el problema para otros patrones.
 Este procedimiento se repite una cantidad de pasos (también llamados epochs) hasta que
-se cumpla cierta condición. Esta condición puede estar relacionada con el tiempo de 
+se cumpla cierta condición. Esta condición puede estar relacionada con el tiempo de
 ejecución de la red, la cantidad de epochs o en relación al error que presente la red
 (con el conjunto de entrenamiento o con un conjunto más amplio).
 

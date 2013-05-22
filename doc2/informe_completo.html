@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<xmp theme="united" style="display:none;">
+
+# Introducción #
+
+En el área de la informática, las redes neuronales (también conocidas como redes neuronales
+artificiales, RNA) son sistemas de neuronas artificiales interconectadas que se relacionan
+entre sí para generar una salida, a partir de una entrada dada.
+
+Estos sistemas son utilizados de forma tal de que hagan un aprendizaje automático. En muchos casos,
+una RNA bien implementada y con los parámetros correctos permite aprender muchos problemas en
+base a patrones de prueba, que serían muy difíciles o hasta imposibles de resolver de forma
+explícita.
+
+En este caso, la temática abordada es la predicción de series temporales.
+Para ello se toma **`x(t) = f(x(t-1), x(t-2), ...)`** como el valor de la serie en el paso
+temporal **`t`**, que depende de los pasos previos de la misma.
+
+La RNA que se busca es aquella que aproxime la función **`x(t)`**.
+# Redes Neuronales Artificiales #
+
+La idea principal de una RNA es que se cuenta con neuronas distribuidas por niveles.
+Cada neurona recibe estímulos de entrada y devuelve un estímulo de salida que se
+calcula aplicando una función de transferencia a la suma ponderada de sus entradas.
+El objetivo, es que al finalizar la etapa de entrenamiento, la red haya obtenido
+valores óptimos para los pesos de cada conexión, que satisfagan el problema.
+
+Las RNA clasificadas como perceptrones simples permiten únicamente resolver problemas
+linealmente separables. Estas RNA solo cuentan con una capa de entrada y una de
+salida. Análogamente existen perceptrones multicapa que cuentan con capas ocultas que
+permiten resolver cualquier problema dada la arquitectura y los parametros correctos.
+
+Una red neuronal obtiene una salida en base a una entrada dada, y la compara con la
+salida esperada. En base a estos datos se recalculan los pesos de las conexiones mediante
+el algoritmo de *Backpropagation Learning*.
+Esto se realiza con patrones de entrada denominado conjunto de entrenamiento y con el
+objetivo de poder generalizar el problema para otros patrones.
+Este procedimiento se repite una cantidad de pasos (también llamados epochs) hasta que
+se cumpla cierta condición. Esta condición puede estar relacionada con el tiempo de
+ejecución de la red, la cantidad de epochs o en relación al error que presente la red
+(con el conjunto de entrenamiento o con un conjunto más amplio).
+
+Definimos arquitectura de la red a la disposición de las neuronas, que determina tanto
+la cantidad de capas ocultas en la red, como la cantidad de neuronas por capa.
+Este parámetro es esencial ya que no todas las arquitecturas son capaces de modelar
+todos los problemas.
+
+Otro parametro importante de una red neuronal es la función de transferencia. En general
+se usa una función sigmoidea.
+
+Por último, hay que tener en cuenta los pesos (factores de ponderación de las entradas)
+inciales que se le da a cada neurona, el *learning rate* y las distintas optimizaciones
+que se le pueden hacer a una implementación (algunos ejemplos son el *momentum*, un
+*learning rate* adaptivo o la inyección de ruido).
+# Implementación #
+
+## Especificaciones generales ##
+
+Se implementó una RNA multicapa en *Matlab*, explotando el potencial de aquellas
+estructuras, funciones y prestaciones de este lenguaje.
+
+### Uso de *structs* ###
+
+Prácticamente todas las funciones tienen acceso a un *struct*, llamado `data` que
+cuenta con el estado actual de la RNA, incluyendo, las entradas, las salidas, los
+pesos, las variaciones en los pesos, los errores, los parámetros, las funciones y
+las constantes.
+
+### Explotación de matrices y vectores ###
+
+Dada la naturaleza de *Matlab*, se priorizó el uso operaciones de matrices, frente a
+sus análogos con loops, en pos de la performance. Por lo tanto, se modeló todo el
+problema de forma matricial y vectorial. Así, valores como los pesos, valores de salida
+y otros, se modelan como matrices o vectores. Como resultado se cuenta con un código más
+compacto y sencillo. Adicionalmente, los valores de los umbrales fueron incluídos
+en estas matrices simplificando aún más las operaciones.
+
+### Uso de *cells* ###
+
+Los *cells* de *Matlab* provee una estructura de datos clara y sencilla para modelar
+los problemas en cuestión (varias capas con un número variable de neuronas). Por lo
+tanto gran parte de nuestras estructuras son *cells*.
+
+## Optimizaciones a la RNA ##
+
+### *Momentum* ###
+
+El *momentum* simpelmente añade una fracción de la corrección previa de los pesos a la
+corrección actual. Este *momentum* ayuda a prevenir que la RNA se estanque en un mínimo
+local. Como todo parámetro de una RNA, las modificaciones en el *momentum* modifican el
+comportamiento de la red (velocidad de convergencia, inestabilidad del sistema).
+
+### Parámetros adaptativos ###
+
+Se realizó una implementación que adapta los parametros usados al estado del problema.
+Se define un criterio basado en parámetros de la RNA y en el error cuadrático medio (ECM)
+de cada patrón para decidir si un *epoch* es considerado bueno, malo o neutral.
+En el caso en los que haya habido una serie de *epochs* buenos, se modifica el
+*learning rate* para incentivar el aprendizaje. En el caso de un *epoch* malo se
+modificará en el sentido contrario. Además, el valor del *momentum* sólo es utilizado
+en los pasos que son considerados como buenos fomentando así una convergencia con mayor
+velocidad solamente cuando el problema se dirige a una solución que parece ser la
+correcta.
+
+Una última optimización es la de realizar un *rollback* en los pasos que son considerados
+malos. Esto implica revertir la actualización de los pesos en este paso, ya que se considera
+que nos alejan de la solución.
+
+### Mezcla aleatoria de las entradas ###
+
+Si bien no es considerada una optimización per sé, es importante mencionar el hecho de que
+el conjunto de patrones se mezcla de forma aleatoria en cada iteración para poder obtener
+buenos resultados.
+
+### Finalización del aprendizaje ###
+
+El momento en que se decide cortar el aprendizaje es un factor clave para definir con qué
+efectividad puede la red generalizar el problema.
+Hemos decidido que nuestro criterio de corte fuera el valor de 200 epochs, dado que nos
+hemos dado cuenta que era un momento apropiado para cortar el aprendizaje.
+Un buen parámetro de corte sería aquel momento en el cual si bien el error para los patrones
+del conjunto de aprendizaje sigue disminuyendo, el error general comienza a aumentar.
+En nuestro caso, no hemos implementado este modo de corte puesto que no hemos tenido el problema
+mencionado anteriormente de que si bien el error para el conjunto de aprendizaje disminuye,
+el error general aumenta.
+Se pueden apreciar los gráficos incluídos en el anexo.
+# Resultados y conclusiones #
+
+Se realizaron diferentes pruebas para definir los parámetros, estructuras y funciones
+que minimizan el ECM. Luego de diferentes evaluaciones hemos fijado aquellos
+parámetros que minimizaban el ECM de la población general de patrones.
+
+En las pruebas, 100 de los 1000 parámetros fueron utilizados como conjunto de
+entrenamiento. La función de rollback se encuentra activada.
+
+En las primeras pruebas se utilizó una estructura de [2 4 4 1] neuronas en las capas, el
+learning rate fue definido como 0.4 y la función de transferencia usada ha sido la
+función sigmoidea lógica.
+
+## Parámetros adaptativos ##
+
+En la sección anexo se presenta una tabla que muestra los ECM para distintas configuraciones
+de los parametros adaptativos en donde las columnas representan:
+
+* a: Cantidad de pasos que se consideran una buena racha.
+* b: Valor que se le suma a eta en una buena racha.
+* c: Factor por el cual se disminuye eta en un paso considerado malo.
+* d: Valor según el cual se evalúa si el paso es bueno, malo o neutral.
+
+De todas las corridas realizadas, hemos decidido quedarnos con las nueve mejores,
+de estas nueve escogidas hemos hecho tres corridas por cada una de ellas.
+Posteriormente, hemos realizado un promedio de estas tres corridas por cada una
+de las nueve mejores.
+La tabla con los promedios de cinco mejores pruebas realizadas se presenta, como ya hemos mencionado, en la sección anexo, en la **Tabla 1**.
+
+Finalmente nos hemos quedado con la primera prueba que es aquella
+con la que obtuvimos mejores resultados con los siguientes valores:
+a = 3, b = 0.001, c = 0.001, d = 0.01.
+
+## Funciones de transferencia ##
+
+Se evaluó la red con la función sigmoidea lógica y la tangente hiperbólica
+Se realizaron tres corridas para cada una de las funciones, la tabla de
+resultados se presenta en la sección anexo en la **Tabla 2**.
+
+A partir de este momento, continuamos utilizando la función sigmoidea lógica.
+
+## Cantidad de entradas ##
+
+Hemos decidido realizar corridas para dos y tres entradas como nos fue recomendado
+por la cátedra. Por cada una de estas opciones, hemos realizado tres corridas.
+Exponemos los resultados en la **Tabla 3** de la sección anexo.
+El mejor resultado fue obtenido para dos entradas.
+
+## Learning rate ##
+
+Otro parámetro a ajustar en las corridas realizadas era el learning rate.
+Hemos decidido realizar tres corridas por cada valor escogido.
+Los resultados de dichas corridas se presentan en la **Tabla 4** de la sección anexo.
+
+El valor elegido para el learning rate fue el de 0.4 ya que a partir de él
+hemos obtenido el menor ECM.
+
+## Momentum ##
+
+El siguiente parámetro a ajustar en las corridas realizadas ha sido el momentum.
+Hemos decidido realizar tres corridas por cada valor escogido.
+Los resultados de dichas corridas se presentan en la **Tabla 5** de la sección anexo.
+
+El valor elegido para el momentum fue el de 1 ya que a partir de él
+hemos obtenido el menor ECM.
+
+</xmp>
+
+<script src="http://strapdownjs.com/v/0.2/strapdown.js"></script>
+</html>
