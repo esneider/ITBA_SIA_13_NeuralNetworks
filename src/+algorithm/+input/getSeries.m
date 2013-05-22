@@ -1,6 +1,6 @@
 function series = getSeries()
 
-    load('+algorithm/+input/series/TimeSerie_G3.mat', 'x');
+    load('+algorithm/+input/+series/TimeSerie_G3.mat', 'x');
 
     % Make column vector
     x = x(:);

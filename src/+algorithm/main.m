@@ -1,6 +1,6 @@
-function main(arch, params, Xi, S)
+function main(arch, params)
 
-    data = algorithm.initialize(arch, params, Xi, S);
+    data = algorithm.initialize(arch, params);
 
     while data.alg.epoch < data.const.maxEpochs
 
@@ -12,7 +12,7 @@ function main(arch, params, Xi, S)
 
             data = algorithm.evalNetwork(input, data);
             data = algorithm.backPropagate(input, data);
-            data = algorithm.adaptativeEta(data);
+            data = algorithm.adaptativeEta(input, data);
         end
 
         data = algorithm.collectStatusInfo(data);

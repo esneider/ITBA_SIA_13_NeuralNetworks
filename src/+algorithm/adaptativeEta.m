@@ -1,11 +1,11 @@
-function data = adaptativeEta(data)
+function data = adaptativeEta(input, data)
 
-    error = algorithm.getError(data);
+    error = algorithm.getError(input, data);
 
     if data.alg.lastError < 0
 
         data.alg.lastError = error;
-        data.alg.lastW = W;
+        data.alg.lastW = data.alg.W;
         return;
     end
 

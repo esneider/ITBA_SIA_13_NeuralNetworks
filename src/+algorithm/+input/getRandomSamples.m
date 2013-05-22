@@ -1,10 +1,11 @@
-function [Xi S] = getRandomSamples(params)
+function [Xi S] = getRandomSamples(data)
 
-    [Xi S] = getInputs(params);
+    [Xi S] = algorithm.input.getInputs(data)
 
-    subset = randperm(size(Xi, 1))(1 : params.inputSamples);
+    subset = randperm(size(Xi, 1));
+    subset = subset(1 : data.const.inputSamples);
 
-    Xi = Xi(subset);
-    S = S(subset);
+    Xi = Xi(subset, :)
+    S = S(subset, :)
 end
 

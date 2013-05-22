@@ -1,4 +1,4 @@
-function data = initialize(arch, params, Xi, S)
+function data = initialize(arch, params)
 
     % Load from file
 
@@ -14,8 +14,9 @@ function data = initialize(arch, params, Xi, S)
 
     data.const = struct();
     data.const.maxEpochs = 1000;
-    data.const.epochsPerDump = 100;
+    data.const.epochsPerDump = 30;
     data.const.rollback = true;
+    data.const.path = '';
 
     data.const.bias = 0.5;         % TEST: [-0.5 : 0.5 : 0.5]             3
     data.const.beta = 0.5;         % TEST: [0.5 : 0.25 : 1]               3
@@ -27,8 +28,6 @@ function data = initialize(arch, params, Xi, S)
     data.const.etaSteps = 3;       % TEST: [2, 3, 4, 5]                   4
     data.const.inputSamples = 100; % TEST: [100, 200, 400]                3
     data.const.inputDim = 2;       % TEST: [2, 3]                         2
-
-    data.const.path = '';
 
     data.const.g = @functions.sigmoidLog; % TEST: [log, tanh]             2
     data.const.dg = @functions.DsigmoidLog;
@@ -49,26 +48,11 @@ function data = initialize(arch, params, Xi, S)
     % Input
 
     data.in = struct();
-    data.in.arch = [size(Xi, 2) arch size(S, 2)];
 
-    if nargin == 2 % File series
+    [data.in.allXi, data.in.allS] = algorithm.input.getInputs(data);
+    [data.in.Xi, data.in.S] = algorithm.input.getRandomSamples(data);
 
-        inputs = algorithm.input.getInputs(params);
-        samples = algorithm.input.getRandomSamples(params);
-
-        if data.const.g == @functions.sigmoidTanh
-            inputs = inputs * 2 - 1;
-            samples = samples * 2 - 1;
-        end
-
-        [data.in.allXi, data.in.allS] = inputs;
-        [data.in.Xi, data.in.S] = samples;
-
-    else % Manual input test
-
-        data.in.allXi = data.in.Xi = Xi;
-        data.in.allS  = data.in.S  = S;
-    end
+    data.in.arch = [size(data.in.Xi, 2) arch size(data.in.S, 2)];
 
     % Algorithm variables
 

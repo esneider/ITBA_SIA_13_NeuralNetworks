@@ -7,10 +7,12 @@ function plotInfo(plots, name)
     ret = [];
     msg = {};
 
+    colors = {'b', 'g', 'r'};
+
     for i = 1 : length(plots)
 
-        ret = [ret, plot(plots{i}{1});
-        msg = [msg, plots{i}{2}];
+        ret = [ret, plot(plots{i}{1}, colors{i})];
+        msg = [msg, {plots{i}{2}}];
     end
 
     legend(ret, msg);

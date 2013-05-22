@@ -12,7 +12,7 @@ function error = getGlobalError(data, useAllInputs)
 
         data = algorithm.evalNetwork(input, data);
 
-        errors = [errors; algorithm.getError(data)];
+        errors = [errors; algorithm.getError(input, data)];
     end
 
     error = mean(errors .^ 2);
