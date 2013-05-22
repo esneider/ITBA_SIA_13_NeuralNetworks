@@ -22,10 +22,10 @@ function data = initialize(arch, params)
     data.const.beta = 0.5;         % TEST: [0.5 : 0.25 : 1]               3
     data.const.momentum = 0.5;     % TEST: [0 : 0.2 : 1]                  6
     data.const.eta = 0.25;         % TEST: [0 : 0.2 : 1]                  6
-    data.const.etaEps = 0.001;     % TEST: [0.0001, 0.001, 0.01, 0.1, 1]  5
-    data.const.etaInc = 0.01;      % TEST: [0.0001, 0.001, 0.01, 0.1, 1]  5
-    data.const.etaDec = 0.01;      % TEST: [0.0001, 0.001, 0.01, 0.1, 1]  5
-    data.const.etaSteps = 3;       % TEST: [2, 3, 4, 5]                   4
+    data.const.etaEps = 0.001;     % TEST: [0.0001, 0.001, 0.01, 0.1]     5
+    data.const.etaInc = 0.01;      % TEST: [0.0001, 0.001, 0.01, 0.1]     5
+    data.const.etaDec = 0.01;      % TEST: [0.0001, 0.001, 0.01, 0.1]     5
+    data.const.etaSteps = 3;       % TEST: [2, 3, 4]                      4
     data.const.inputSamples = 100; % TEST: [100, 200, 400]                3
     data.const.inputDim = 2;       % TEST: [2, 3]                         2
 
@@ -91,6 +91,7 @@ function data = initialize(arch, params)
     data.alg.goodSteps = 0;
     data.alg.rollbacks = 0;
     data.alg.lastError = -1;
+    data.alg.totalGoodSteps = 0;
 
     % Status information for plotting
 
@@ -99,5 +100,6 @@ function data = initialize(arch, params)
     data.info.globalErrors = [];
     data.info.etas = [];
     data.info.rollbacks = [];
+    data.info.goodSteps = [];
 end
 

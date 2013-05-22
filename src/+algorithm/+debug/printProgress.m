@@ -18,7 +18,7 @@ function printProgress(data)
     end
 
     if N == numN
-        fprintf(' - done');
+        fprintf(' - done\n');
     end
 end
 

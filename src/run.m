@@ -14,7 +14,46 @@
     % 'beta', 1,...
     % 'pps', 20);
 
-params = struct('path', 'output3/', 'inputSamples', 10, 'rollback', false);
+% params = struct(...
+%     % 'path', 'output8/',...
+%     % 'inputSamples', 10,...
+%     'rollback', true,...
+%     % 'etaEps', 0.02,...
+%     % 'etaDec', 0.001,...
+%     % 'etaInc', 0.1,...
+%     'maxEpochs', 199);
 
-algorithm.main([4 4], params);
+params = struct('maxEpochs', 199);
+
+i = 9;
+
+for etaEps = [0.0001, 0.001, 0.01, 0.1]
+
+    for etaInc = [0.001, 0.01, 0.1]
+
+        for etaDec = [0.0001, 0.001, 0.01, 0.1]
+
+            for etaSteps = [2, 3, 4]
+
+                fprintf('eps: '); disp(etaEps);
+                fprintf('inc: '); disp(etaInc);
+                fprintf('dec: '); disp(etaDec);
+                fprintf('steps: '); disp(etaSteps);
+
+                params.etaEps = etaEps;
+                params.etaInc = etaInc;
+                params.etaDec = etaDec;
+                params.etaSteps = etaSteps;
+
+                i = i + 1;
+
+                fprintf('i: '); disp(i);
+
+                params.path = strcat('output', int2str(i), '/');
+
+                algorithm.main([4 4], params);
+            end
+        end
+    end
+end
 

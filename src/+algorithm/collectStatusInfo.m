@@ -11,5 +11,7 @@ function data = collectStatusInfo(data)
     data.info.etas = [data.info.etas; data.alg.eta];
 
     data.info.rollbacks = [data.info.rollbacks; data.alg.rollbacks];
+
+    data.info.goodSteps = [data.info.goodSteps; data.alg.totalGoodSteps];
 end
 

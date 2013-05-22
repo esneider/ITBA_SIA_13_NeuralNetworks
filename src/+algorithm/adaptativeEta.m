@@ -16,6 +16,8 @@ function data = adaptativeEta(input, data)
         data.alg.goodSteps = data.alg.goodSteps + 1;
         data.alg.momentum = data.const.momentum;
 
+        data.alg.totalGoodSteps = data.alg.totalGoodSteps + 1;
+
         if data.alg.goodSteps >= data.const.etaSteps
 
             data.alg.goodSteps = 0;
