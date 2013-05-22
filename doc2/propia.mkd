@@ -69,5 +69,5 @@ del conjunto de aprendizaje sigue disminuyendo, el error general comienza a aume
 En nuestro caso, no hemos implementado este modo de corte puesto que no hemos tenido el problema
 mencionado anteriormente de que si bien el error para el conjunto de aprendizaje disminuye,
 el error general aumenta.
-Se pueden apreciar los gráficos incluídos en el anexo.
+Se pueden apreciar lo comentado anteriormente en el **Gráfico 1** incluído en el anexo.
 

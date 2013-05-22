@@ -56,7 +56,21 @@ Momentum
 
 **Tabla 5**: ECM para los distintos valores del momentum
 
-Erros cuadráticos medios
+Arquitecturas
+
+| Arquitectura | ECM (promedio) |
+| -- | -- |
+| [2 9 6 1] | 0.14235 |
+| [2 9 9 1] | 0.13238 |
+| [2 3 5 1] | 0.14454 |
+| [2 6 6 1] | 0.14341 |
+| [2 4 4 1] | 0.14066 |
+| [2 5 3 1] | 0.14076 |
+| [2 7 4 1] | 0.14423 |
+
+**Tabla 6**: ECM para las distintas arquitecturas
+
+Errores cuadráticos medios
 
 ![](img/grafico_1.png)
 

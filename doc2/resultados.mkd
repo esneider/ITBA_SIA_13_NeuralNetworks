@@ -64,3 +64,21 @@ Los resultados de dichas corridas se presentan en la **Tabla 5** de la sección 
 El valor elegido para el momentum fue el de 1 ya que a partir de él
 hemos obtenido el menor ECM.
 
+@@ Arquitecturas @@
+
+Hemos probado con varias arquitecturas que se presentan en la **Tabla 6** de la sección anexo.
+Se han hecho tres corridas por cada arquitectura.
+Hemos concluído en que la arquitectura con la cual hemos obtenido los mejores resultados
+ha sido [2 9 9 1].
+
+Finalmente nuestra mejor corrida ha sido con una arquitectura de [2 9 9 1],
+un learning rate de 0.4, un momentum de 1 utilizando la función sigmoidea lógica
+y los siguientes parámetros:
+
+* Tres pasos son considerados una buena racha.
+* A eta se le suma a 0.01 en una buena racha.
+* Eta se disminuye por un factor 0.01 en un paso considerado malo.
+* Se evalúa si el paso es bueno, malo o neutral según un epsilon de 0.01.
+
+Con esta configuración se obtiene un error para el conjunto completo de 0.13238.
+
