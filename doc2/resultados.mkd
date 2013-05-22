@@ -1,0 +1,36 @@
+@ Resultados @
+
+Se realizaron diferentes pruebas para definir los parametros, estructuras y funciones
+que minimizan el ECM. Luego de diferentes evaluaciones se fueron fijando aquellos
+parametros que minimizaban el ECM de la población general de patrones.
+
+En las pruebas, 100 de los 1000 parametros fueron utilizados como conjunto de
+entrenamiento. La función de Rollback se encuentra activada.
+
+En las primeras pruebas se utilizó una estructura de [2 4 4 1] neuronas en las capas, el
+learning rate se encuentra definido como 0.4 y la función de transferencia usada es la
+función sigmoidea lógica.
+
+@@ Parametros adaptativos @@
+
+A continuación se presenta una tabla que muestra los ECM para distintas configuraciones
+de los parametros adaptativos en donde las columnas representan:
+
+* a: Cantidad de pasos que se consideran una buena racha.
+* b: Valor que se le suma a eta en una buena racha.
+* c: Factor por el cual se disminuye eta en un paso considerado malo.
+* d: Valor según el cual se evalua si el paso es bueno, malo o neutral.
+
+
+
+|| a | b | c | d | ECM |
+|------|-----|----|-----|-----|-----|
+| Prueba N°1 | 3 | 0.01 | 0.0001 | 0.1 | 0.12131 |
+| Prueba N°2 | 2 | 0.1 | 0.1 | 0.1 | 0.12259 |
+| Prueba N°3 | 3 | 0.1 | 0.1 | 0.001 | 0.12274 |
+| Prueba N°4 | 2 | 0.001 | 0.1 | 0.0001 | 0.12277 |
+| Prueba N°5 | 4 | 0.001 | 0.001 | 0.1 | 0.12277 |
+
+**Tabla 1**: ECM para diferentes configuraciones de los parametros adaptativos.
+
+

@@ -39,9 +39,9 @@ comportamiento de la red (velocidad de convergencia, inestabilidad del sistema).
 @@@ Parametros adaptativos @@@
 
 Se realizó una implementación que adapta los parametros usados al estado del problema.
-Se define un criterio basado en parámetros de la RNA y en el error cuadrático medio de
-cada patrón para decidir si un *epoch* es considerado bueno, malo o neutral. En el
-caso en los que haya habido una serie de *epochs* buenos, se modifica el
+Se define un criterio basado en parámetros de la RNA y en el error cuadrático medio (ECM)
+de cada patrón para decidir si un *epoch* es considerado bueno, malo o neutral.
+En el caso en los que haya habido una serie de *epochs* buenos, se modifica el
 *learning rate* para incentivar el aprendizaje. En el caso de un *epoch* malo se
 modificará en el sentido contrario. Además, el valor del *momentum* sólo es utilizado
 en los pasos que son considerados como buenos fomentando así una convergencia con mayor
