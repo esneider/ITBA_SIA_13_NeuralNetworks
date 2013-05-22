@@ -2,19 +2,15 @@ function [Xi S] = getInputs(params)
 
     series = algorithm.input.getSeries();
 
-    dim = params.inputDim;
-    samples = params.inputSamples;
-    num = length(series);
+    dim = params.inputDim + 1;
 
-    subvectors = randperm(num - dim);
-    subvectors = subvectors(1 : samples);
+    inputs = []
 
-    inputs = [];
-
-    for i = 0 : dim
-        inputs = [inputs series(subvectors + i)'];
+    for i = 1 : dim + 1
+        inputs = [inputs series(i : end - dim + i)]
     end
 
     Xi = inputs(:, 1 : end - 1);
     S = inputs(:, end);
 end
+

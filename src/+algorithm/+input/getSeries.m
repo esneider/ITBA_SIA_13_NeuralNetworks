@@ -1,6 +1,18 @@
 function series = getSeries()
 
-    load('+algorithm/+input/TimeSerie_G3.mat', 'x');
+    load('+algorithm/+input/series/TimeSerie_G3.mat', 'x');
 
-    series = (x - mean(x)) / std(x);
+    % Make column vector
+    x = x(:);
+
+    % Standarize
+    % x = (x - mean(x)) / std(x);
+
+    % Proyect to [0, 1]
+    m = min(x);
+    M = max(x);
+    x = (x - m) / (M - m);
+
+    series = x;
 end
+

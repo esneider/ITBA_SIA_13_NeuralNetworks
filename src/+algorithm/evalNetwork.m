@@ -8,7 +8,5 @@ function data = evalNetwork(input, data)
 
         data.alg.V{m}(2 : end) = data.fun.g(data.alg.h{m});
     end
-
-    data.alg.errorForInputs(input) = sum((data.in.S(input, :)' - data.alg.V{end}(2 : end)) .^ 2);
 end
 

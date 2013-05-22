@@ -19,15 +19,15 @@ function printData(data, file)
 
                 len = numel(data);
 
-                if (len == 0)
+                if len == 0
 
                     fprintf(file, '%s = [empty]\n', str);
 
-                elseif (len == 1)
+                elseif len == 1
 
                     fprintf(file, '%s = %s', str, evalc('disp(data)'));
 
-                elseif (len < 50)
+                elseif len < 50
 
                     fprintf(file, '%s =\n%s', str, evalc('printmat(data)'));
 

@@ -1,45 +1,30 @@
 function main(arch, params, Xi, S)
 
-    if (nargin == 2)
+    data = algorithm.initialize(arch, params, Xi, S);
 
-        [Xi, S] = algorithm.input.getInputs(params);
-    end
+    while data.alg.epoch < data.const.maxEpochs
 
-    data = algorithm.initialize(Xi, S, arch, params);
+        data.alg.epoch = data.alg.epoch + 1;
 
-    while data.alg.runs < data.const.runs
-
-        data.alg.runs = data.alg.runs + 1;
-
-        data = algorithm.addInputNoise(data);
+        data = algorithm.shuffleInputs(data);
 
         for input = 1 : size(data.in.Xi, 1)
 
             data = algorithm.evalNetwork(input, data);
             data = algorithm.backPropagate(input, data);
+            data = algorithm.adaptativeEta(data);
         end
 
-        data = algorithm.adaptativeEta(data);
+        data = algorithm.collectStatusInfo(data);
 
-        if (data.alg.errors(end) < data.const.finish)
-            break;
-        end
+        if mod(data.alg.epoch, data.const.epochsPerDump) == 0
 
-        % Debug
-
-        if (~isempty(data.const.debug) && mod(data.alg.runs, 3) == 0)
-
-            data = algorithm.debug.debugRegion(data);
-        end
-
-        if (mod(data.alg.runs, data.const.pps) == 0)
-
-            algorithm.debug.dump2file(data, false);
+            algorithm.debug.dump2file(data);
         end
 
         algorithm.debug.printProgress(data);
     end
 
-    algorithm.finalize(data);
+    algorithm.debug.dump2file(data);
 end
 
